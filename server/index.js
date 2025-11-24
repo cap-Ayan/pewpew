@@ -31,8 +31,9 @@ app.use("/api/upload", uploadRoute);
 // Initialize socket.io
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_URL || "*",
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
@@ -100,7 +101,7 @@ io.on("connection", (socket) => {
   });
 });
 
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
