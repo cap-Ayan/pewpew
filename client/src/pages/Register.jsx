@@ -12,7 +12,7 @@ function Register() {
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:8000/api/auth/register", {
+            await axios.post("http://pewpew-1.onrender.com/api/auth/register", {
                 username,
                 password,
             });
