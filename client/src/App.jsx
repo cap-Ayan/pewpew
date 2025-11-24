@@ -8,7 +8,7 @@ import axios from "axios";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-const socket = io("http://localhost:8000", {
+const socket = io("https://pewpew-alpha.vercel.app", {
   transports: ["websocket"],
   autoConnect: false,
 });
