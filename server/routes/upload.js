@@ -17,8 +17,9 @@ const upload = multer({ storage });
 // Upload endpoint
 router.post("/", upload.single("file"), (req, res) => {
     try {
-        const serverUrl = process.env.SERVER_URL || `http://localhost:${process.env.PORT || 8000}`;
-        const fileUrl = `${serverUrl}/uploads/${req.file.filename}`;
+        // Use SERVER_URL from environment, or default to localhost for development
+        const baseUrl = process.env.SERVER_URL || "http://localhost:8000";
+        const fileUrl = `${baseUrl}/uploads/${req.file.filename}`;
         res.status(200).json({ url: fileUrl, type: req.file.mimetype, name: req.file.originalname });
     } catch (err) {
         res.status(500).json(err);
