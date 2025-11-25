@@ -8,7 +8,7 @@ import axios from "axios";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
-const socket = io("http://pewpew-1.onrender.com", {
+const socket = io(import.meta.env.VITE_SOCKET_URL || "http://localhost:8000", {
   transports: ["websocket"],
   autoConnect: false,
 });
@@ -88,7 +88,7 @@ function ChatApp({ user, onLogout }) {
         const formData = new FormData();
         formData.append("file", file);
         try {
-          const res = await axios.post("http://localhost:8000/api/upload", formData);
+          const res = await axios.post(`${import.meta.env.VITE_API_URL || "http://localhost:8000/api"}/upload`, formData);
           attachment = res.data;
         } catch (err) {
           console.error("Upload failed", err);
